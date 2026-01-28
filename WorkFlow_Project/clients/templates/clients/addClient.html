@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkFlow Add Client</title>
+  </head>
+  <body>
+    <form action="{% url 'clients:addClient' %}" method="POST">
+      {% csrf_token %}
+      <label for="">Client Name</label>
+      <input type="text" name="name" placeholder="Enter Client Name" required />
+      <label for="">CLient Contact Info</label>
+      <input type="email" placeholder="Enter Client's Email:" name="email" />
+      <input type="submit" value="Save" />
+    </form>
+    <a href="{% url 'clients:clients' %}"><button>Cancel</button></a>
+  </body>
+</html>

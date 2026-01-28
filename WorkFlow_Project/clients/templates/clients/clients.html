@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkFlow Clients</title>
+  </head>
+  <body>
+    <h1>Clients</h1>
+    <a href="{% url 'clients:addClient' %}"><button>Add Client</button></a>
+    <div>
+      {% if clients %} {% for client in clients %}
+      <div>
+        <h2>{{client.name}}</h2>
+        <h3>{{client.email}}</h3>
+        <a href="{% url 'clients:editClient' client.id %}">
+          <button>Edit Client</button></a
+        >
+        <a href="{% url 'clients:deleteClient' client.id %}">
+          <button>Delete Client</button></a
+        >
+      </div>
+      {% endfor %} {% else %}
+      <h2>No Clients Yet</h2>
+      <a href="{% url 'clients:addClient' %}"><button>Add Client</button></a>
+      {% endif %}
+      <a href="{% url 'dashboard:home' %}"> <button>Go to home page</button></a>
+    </div>
+  </body>
+</html>

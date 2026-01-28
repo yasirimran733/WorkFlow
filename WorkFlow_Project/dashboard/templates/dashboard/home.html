@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkFlow Home</title>
+  </head>
+  <body>
+    <h1>You Are in WorkFlow Home</h1>
+    <div>
+      <button><a href="{% url 'accounts:login' %}">Login </a></button>
+      <button><a href="{% url 'accounts:signup' %}">Get Started</a></button>
+    </div>
+    <p><a href="{% url 'dashboard:dashboard' %}">Go to Dashboard</a></p>
+    <p><a href="{% url 'dashboard:about' %}">Go to About </a></p>
+    <p><a href="{% url 'dashboard:contact' %}">Go to Contact </a></p>
+    <h3>Want to Explore Projects?</h3>
+    <a href="{% url 'projects:showProjects' %}"
+      ><button>Show Projects</button></a
+    >
+    <a href="{% url 'clients:clients' %}"><button>Show Clients</button></a>
+  </body>
+</html>

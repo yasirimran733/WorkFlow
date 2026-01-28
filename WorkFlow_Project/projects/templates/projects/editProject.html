@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkFlow Edit Project</title>
+  </head>
+  <body>
+    {% if project %}
+    <h1>{{project.id}}</h1>
+    <div class="form">
+      <form action="{% url 'projects:editProject' project.id %}" method="POST">
+        {% csrf_token %}
+        <label for="title">Title</label>
+        <input
+          type="text"
+          placeholder="Enter Title of the Project:"
+          name="title"
+          required
+        />
+        <label for="description">Descritpion</label>
+        <textarea name="description" id="description"></textarea>
+        <label for="budget">Budget</label>
+        <input
+          type="number"
+          placeholder="Enter Budget of the Project:"
+          name="budget"
+          required
+        />
+        <label for="remaining">Amount Left</label>
+        <input
+          type="number"
+          placeholder="Enter remaining Amount of the Project:"
+          name="remaining"
+          required
+        />
+        <label for="startDate">Start Date</label>
+        <input type="date" name="startDate" />
+        <label for="deadline">Deadline</label>
+        <input type="date" name="deadline" />
+        <input type="submit" name="save" id="save" value="Save Project" />
+      </form>
+    </div>
+    {% endif %}
+  </body>
+</html>
