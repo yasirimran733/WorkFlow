@@ -11,7 +11,7 @@ def addProject(request):
         title = data.get('title')
         description = data.get('description')
         budget  = data.get('budget')
-        remainingAmount = data.get('remaining')
+        paid = data.get('paid')
         startDate = data.get('startDate')
         deadline = data.get('deadline')
         clientId = data.get('client')
@@ -23,7 +23,7 @@ def addProject(request):
             title = title,
             description =  description,
             budget = budget,
-            remainingAmount = remainingAmount,
+            paid = paid,
             client = client,
             startDate = startDate,
             deadline = deadline,
@@ -40,7 +40,7 @@ def editProject(request,id):
         project.title = data.get('title')
         project.description = data.get('description')
         project.budget  = data.get('budget')
-        project.remainingAmount = data.get('remaining')
+        project.paid = data.get('paid')
         project.startDate = data.get('startDate')
         project.deadline = data.get('deadline')
 
@@ -65,3 +65,13 @@ def showProjects(request):
     projects = Project.objects.filter(user=request.user)
     return render(request,'projects/showProjects.html' , {'projects': projects})
 
+def searchProject(request):
+    if request.method == 'GET':
+        data = request.GET
+        q = data.get('search')
+        projects = Project.objects.filter(user = request.user , title__contains = q)
+    return render(request, 'projects/showProjects.html' , {'projects' : projects , 'q' : q})    
+
+def projectDetail(request,id):
+    project = Project.objects.get(id=id)
+    return render(request,'projects/projectDetail.html',{'project':project})

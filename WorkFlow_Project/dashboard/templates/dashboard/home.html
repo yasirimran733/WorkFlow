@@ -8,6 +8,8 @@
   <body>
     <h1>You Are in WorkFlow Home</h1>
     <div>
+      <h2>Show my profile</h2>
+      <a href="{% url 'dashboard:profile' %}"><button>Profile</button></a>
       <button><a href="{% url 'accounts:login' %}">Login </a></button>
       <button><a href="{% url 'accounts:signup' %}">Get Started</a></button>
     </div>

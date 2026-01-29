@@ -11,6 +11,7 @@
     <div>
       {% if clients %} {% for client in clients %}
       <div>
+        <h2>{{client.id}}</h2>
         <h2>{{client.name}}</h2>
         <h3>{{client.email}}</h3>
         <a href="{% url 'clients:editClient' client.id %}">

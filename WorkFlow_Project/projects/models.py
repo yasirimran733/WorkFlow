@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from clients.models import Client
+from django.utils.timezone import now
 # Create your models here.
 
 class Project(models.Model):
@@ -8,9 +9,9 @@ class Project(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()
     budget = models.IntegerField()
-    remainingAmount = models.IntegerField()
+    paid = models.IntegerField()
     client = models.ForeignKey(Client,on_delete=models.CASCADE,null=True , blank=True)
-    startDate = models.DateTimeField()
+    startDate = models.DateTimeField(default=now)
     deadline = models.DateTimeField()
 
     def __str__(self):

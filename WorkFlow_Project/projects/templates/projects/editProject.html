@@ -7,7 +7,6 @@
   </head>
   <body>
     {% if project %}
-    <h1>{{project.id}}</h1>
     <div class="form">
       <form action="{% url 'projects:editProject' project.id %}" method="POST">
         {% csrf_token %}
@@ -17,6 +16,7 @@
           placeholder="Enter Title of the Project:"
           name="title"
           required
+          value="{{project.title}}"
         />
         <label for="description">Descritpion</label>
         <textarea name="description" id="description"></textarea>
@@ -26,18 +26,20 @@
           placeholder="Enter Budget of the Project:"
           name="budget"
           required
+          value="{{project.budget}}"
         />
-        <label for="remaining">Amount Left</label>
+        <label for="paid">Amount Paid</label>
         <input
           type="number"
           placeholder="Enter remaining Amount of the Project:"
-          name="remaining"
+          name="paid"
           required
+          value="{{project.paid}}"
         />
         <label for="startDate">Start Date</label>
-        <input type="date" name="startDate" />
+        <input type="date" value="{{project.startDate}}" name="startDate" />
         <label for="deadline">Deadline</label>
-        <input type="date" name="deadline" />
+        <input type="date" value="{{project.deadline}}" name="deadline" />
         <input type="submit" name="save" id="save" value="Save Project" />
       </form>
     </div>

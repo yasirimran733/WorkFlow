@@ -9,7 +9,6 @@
     <h1>WorkFlow Dashboard</h1>
     <h3>Welcome {{username}}</h3>
     <p><a href="{% url 'dashboard:home' %}">Back to Home </a></p>
-    <p><a href="{% url 'accounts:login' %}">Logout</a></p>
     <h1>Projects</h1>
     <div>
       <h2>{{projectCount}}</h2>
@@ -19,6 +18,15 @@
     <div>
       <h2>{{clientCount}}</h2>
       <p>Total Clients</p>
+    </div>
+    <h1>Stats</h1>
+    <div>
+      <h2>{{totalAmount}}</h2>
+      <p>Total Amount</p>
+      <h2>{{totalPaid}}</h2>
+      <p>Total Paid Amount</p>
+      <h2>{{remainingAmount}}</h2>
+      <p>Remaining Amount</p>
     </div>
   </body>
 </html>

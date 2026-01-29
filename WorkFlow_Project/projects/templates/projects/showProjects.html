@@ -8,6 +8,16 @@
   <body>
     <h1>All Projects</h1>
     <a href="{% url 'projects:addProject' %}"><button>Add Project</button></a>
+    <form action="{% url 'projects:searchProject' %}">
+      <label for="search">Search Project</label>
+      <input
+        type="text"
+        name="search"
+        value="{{q}}"
+        placeholder="Search Project"
+      />
+      <input type="submit" value="Search Project.." />
+    </form>
 
     {% if projects %} {% for project in projects %}
     <div>
@@ -24,6 +34,11 @@
       <button>
         <a href="{% url 'projects:deleteProject' project.id %}"
           >Delete Project</a
+        >
+      </button>
+      <button>
+        <a href="{% url 'projects:projectDetail' project.id %}"
+          >Project Detail</a
         >
       </button>
     </div>
