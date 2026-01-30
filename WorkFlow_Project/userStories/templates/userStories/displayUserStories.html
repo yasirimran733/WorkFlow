@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserStories</title>
+</head>
+<body>
+    <!-- UserStories of current Sprint -->
+    <h1>{{sprint.name}}</h1> 
+
+    {% for u in userStories %}
+    <p>{{u.description }}</p>
+    {% endfor %}
+
+    <a href="{% url 'userStories:createStory' sprint.id %}"><button>Add User Story</button></a>
+
+</body>
+</html>

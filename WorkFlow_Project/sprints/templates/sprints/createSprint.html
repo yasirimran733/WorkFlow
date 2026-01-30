@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Sprint</title>
+<style>
+    label{
+        display: block;
+        padding: 5px;
+    }
+</style>
+</head>
+<body>
+    <h1>Create Sprint</h1>
+    <div>
+        <form action="{% url 'sprints:createSprint' id %}" method="POST">
+            {% csrf_token %}
+            <label for="name">Sprint Name</label>
+            <input type="text" name="name" placeholder="Enter Sprint Name" required>
+            <label for="starDdate">Start Date</label>
+            <input type="date" name="startDate" id="startDate" value="{{today}}">
+            <label for="endDate">End Date</label>
+            <input type="date" name="endDate" id="endDate" required>
+            <input type="submit" value="Create">
+                <!-- <a href="{% url 'projects:projectDetail' id %}"><button>Cancel</button></a> -->
+        </form>
+    </div>
+</body>
+</html>

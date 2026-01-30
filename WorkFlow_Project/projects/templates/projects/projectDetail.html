@@ -13,5 +13,26 @@
     <p>{{project.client.name}}</p>
     <h3>Amount paid</h3>
     <p>{{project.paid}}</p>
+    <p>{{id}}</p>
+    <br>
+    <h1>Sprints</h1>
+    <hr>
+    <a href="{% url 'sprints:createSprint' id %}"><button>Create Sprint</button></a>
+    {% if sprints %}
+    <ul>
+    {% for sprint in sprints %}
+      <li>{{sprint.name}}</li>
+      <a href="{% url 'userStories:displayUserStories' sprint.id %}"><button>See UserStories</button></a>
+      {% if sprint.isActive %}
+      <p>"Active"</p>
+      {% else %}
+      <p>"Not Active"</p>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No Sprint</p>
+    {% endif %}
+
   </body>
 </html>

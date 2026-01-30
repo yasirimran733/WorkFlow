@@ -2,8 +2,11 @@ from django.shortcuts import render ,redirect
 from .models import Project
 from django.shortcuts import get_object_or_404
 from clients.models import *
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+from sprints.models import Sprint
 
+@login_required
 def addProject(request):
     if request.method == 'POST':
         data = request.POST
@@ -32,6 +35,7 @@ def addProject(request):
     clientData = Client.objects.filter(user = request.user)
     return render(request,'projects/addProject.html',{'clients' : clientData})  
 
+@login_required
 def editProject(request,id):
     project = get_object_or_404(Project,id=id,user=request.user)
     print(project.id)
@@ -51,6 +55,7 @@ def editProject(request,id):
         print("Not a Post") 
     return render(request,'projects/editProject.html' , {'project':project})  
   
+@login_required
 def deleteProject(request,id):
     project = Project.objects.filter(id=id,user=request.user)
     if project:
@@ -58,13 +63,12 @@ def deleteProject(request,id):
         return redirect('projects:showProjects')
     return render(request,'projects/showProjects.html')
 
-
-
-
+@login_required
 def showProjects(request):
     projects = Project.objects.filter(user=request.user)
     return render(request,'projects/showProjects.html' , {'projects': projects})
 
+@login_required
 def searchProject(request):
     if request.method == 'GET':
         data = request.GET
@@ -72,6 +76,8 @@ def searchProject(request):
         projects = Project.objects.filter(user = request.user , title__contains = q)
     return render(request, 'projects/showProjects.html' , {'projects' : projects , 'q' : q})    
 
+@login_required
 def projectDetail(request,id):
     project = Project.objects.get(id=id)
-    return render(request,'projects/projectDetail.html',{'project':project})
+    sprints = Sprint.objects.filter(project=project)
+    return render(request,'projects/projectDetail.html',{'project':project , 'sprints' : sprints , 'id':id})
